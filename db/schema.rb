@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(version: 2020_05_06_224315) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "name"
+    t.string "profile_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "introduction"
-    t.string "profile_image_id"
     t.integer "postcode"
     t.integer "prefecture_code"
     t.string "address_city"
