@@ -1,0 +1,5 @@
+
+<% @searched_books.each do |searched_book| %>
+	<td><%= attachment_image_tag(searched_book.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
+	<%= searched_book.title %><br>
+<% end %>

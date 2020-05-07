@@ -1,0 +1,22 @@
+<div class="body">
+	<h3>Follower Users</h3>
+
+		<table>
+				<thead>
+			<tr>
+				<th>image　　</th>
+				<th>name　　</th>
+			</tr>
+		</thead>
+		<% @users.each do |user| %>
+		<tbody>
+			<td><%= attachment_image_tag(user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg") %></td>
+			<td><%= user.name %>　　</td>
+	 		<td>フォロー数 : <%= @user.followings.count %>　　　</td>
+	 		<td>フォロワー数 : <%= @user.followers.count %>　　　</td>
+	 		<td><%= render 'relationships/follow_button', user: user %></td>
+			
+		</tbody>
+		<% end %>
+	</table>
+</div>

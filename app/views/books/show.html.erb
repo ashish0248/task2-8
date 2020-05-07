@@ -1,0 +1,68 @@
+<div class="body">
+		<% if @post_comment_new.errors.any? %>
+        <div class="alart-message">
+           <h3 class="alart-body"><%= pluralize(@post_comment_new.errors.count, "error") %> prohibited this book from being saved:</h3>
+          <ul>
+             <% @post_comment.errors.full_messages.each do |message| %>
+                 <li><%= message %></li>
+             <% end %>
+          </ul>
+      <% end %>
+      </div>
+    <div class="container">
+	<div class="row">
+	<div class="col-xs-3">
+
+		<h2>User info</h2>
+		<%= render 'users/profile', user: @user  %>
+
+		<h2>New book</h2>
+		<%= render 'books/newform', book: @book_new %>
+
+	</div>
+
+	<div class="col-xs-9">
+		<h2>Book detail</h2>
+
+		<table class="table">
+				<tr>
+					<td>
+						<%= link_to (@user) do %>
+						<%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
+						<%= @user.name %>
+						<% end %>
+					</td>
+					<td><%= link_to @book.title, book_path(@book) %></td>
+					<td><%= @book.body %></td>
+
+					<td  id="favorite-<%= @book.id %>">
+			        	<%= render partial: "favorites/favorite_place", locals: {book: @book} %></td>
+					<td>コメント数 : <%= @book.post_comments.count %></td>
+
+				<% if @user == current_user %>
+                    <td><%= link_to 'Edit', edit_book_path(@book.id)  %></td>
+                    <td><%= link_to 'Destroy', book_path(@book.id), method: :delete, "data-confirm" => "本当に削除してもよろしいですか？"  %></td>
+                <% else %>
+                    <th></th>
+                    <th></th>
+                <% end %>
+				</tr>
+		</table>
+
+
+		<div>
+		<h4>コメント</h4>
+		<table id=comment>
+				<tbody>
+					<tr>
+						<td>
+			  <%= render partial: "post_comments/postcomment_place", locals: {book: @book, post_comment_new: @post_comment_new} %></td>
+					</tr>
+				</tbody>
+			</table>	
+
+	</div>
+
+	</div>
+</div>
+</div>

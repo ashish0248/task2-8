@@ -1,0 +1,5 @@
+
+<% @searched_users.each do |searched_user| %>
+	<td><%= attachment_image_tag searched_user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg" %></td>
+	<%= searched_user.name %><br>
+<% end %>

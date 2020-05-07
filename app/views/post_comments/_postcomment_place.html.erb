@@ -1,0 +1,19 @@
+
+<% book.post_comments.each do |post_comment| %>
+	<ol id="post-<%= post_comment.id %>">
+		<%#= link_to(book.user) do %>
+
+	 	<%= attachment_image_tag(post_comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+ 		<%= post_comment.comment %>
+		<div><%= post_comment.user.name %></div>
+	 	<% if post_comment.user == current_user %>
+			<%= link_to "削除",  book_post_comment_path(@book.id, post_comment.id), method: :delete, remote: true  %>
+	 	<% end %>
+	</ol>
+<% end %>
+
+
+<%= form_with model: [book, post_comment_new] do |f| %>
+	<%= f.text_field :comment %>
+	<%= f.submit "投稿"%>
+<% end %>
